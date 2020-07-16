@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+# swagger 是否开启
+swagger:
+  enable: true
+
+#  spring 配置
+spring:
+  datasource:
+    druid:
+      db-type: mysql
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql:///zang-yue?serverTimezone=UTC
+      username: root
+      password: lhfadmin
+

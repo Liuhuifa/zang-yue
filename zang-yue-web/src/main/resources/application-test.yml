@@ -1,0 +1,7 @@
+server:
+  port: 8081
+
+# swagger 是否开启
+swagger:
+  enable: true
+
