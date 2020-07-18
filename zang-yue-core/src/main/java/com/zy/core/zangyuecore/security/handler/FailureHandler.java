@@ -1,4 +1,4 @@
-package com.lhf.zangyuecore.security.handler;
+package com.zy.core.zangyuecore.security.handler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;

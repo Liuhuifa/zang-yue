@@ -7,11 +7,12 @@
         <groupId>com.lhf</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <packaging>jar</packaging>
-    <artifactId>zang-yue-core</artifactId>
+    <groupId>com.zy.system</groupId>
+    <artifactId>zang-yue-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>zang-yue-core</name>
-    <description>核心模块</description>
+    <name>zang-yue-system</name>
+    <description>服务层</description>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -20,14 +21,8 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.zy.system</groupId>
-            <artifactId>zang-yue-system</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -40,7 +35,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
     </dependencies>
 
 </project>
