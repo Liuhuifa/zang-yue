@@ -1,4 +1,4 @@
-package com.zy.zangyueweb.config;
+package com.zy.core.zangyuecore.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

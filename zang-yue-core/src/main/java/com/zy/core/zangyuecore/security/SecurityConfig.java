@@ -1,5 +1,7 @@
-package com.zy.zangyueweb.config;
+package com.zy.core.zangyuecore.security;
 
+import com.zy.core.zangyuecore.security.handler.FailureHandler;
+import com.zy.core.zangyuecore.security.handler.SuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -55,9 +57,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //TODO 安全配置
         http.authorizeRequests()
+                .antMatchers("/sys-user/add", "/login/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .successHandler(new SuccessHandler())
+                .failureHandler(new FailureHandler())
                 .and()
                 .csrf().disable()
                 .cors().disable();

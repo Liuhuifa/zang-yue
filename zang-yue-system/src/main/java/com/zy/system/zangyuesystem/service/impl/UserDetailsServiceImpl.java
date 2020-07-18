@@ -1,4 +1,4 @@
-package com.zy.core.zangyuecore.security.service;
+package com.zy.system.zangyuesystem.service.impl;
 
 import com.zy.system.zangyuesystem.dto.SysUserDetails;
 import com.zy.system.zangyuesystem.mapper.SysUserDao;

@@ -1,5 +1,6 @@
 package com.zy.system.zangyuesystem.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zy.system.zangyuesystem.entity.SysUser;
 import com.zy.system.zangyuesystem.mapper.SysUserDao;
 import com.zy.system.zangyuesystem.service.inter.SysUserService;
@@ -22,5 +23,21 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public int insert(SysUser sysUser) {
         return sysUserDao.insert(sysUser);
+    }
+
+    @Override
+    public boolean usernameExist(String username) {
+        QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
+        queryWrapper.ge("username", username);
+        Integer count = sysUserDao.selectCount(queryWrapper);
+        return count > 0;
+    }
+
+    @Override
+    public boolean phoneExist(String phone) {
+        SysUser sysUser = new SysUser();
+        sysUser.setPhone(phone);
+        Integer count = sysUserDao.selectCount(new QueryWrapper<>(sysUser));
+        return count > 0;
     }
 }
