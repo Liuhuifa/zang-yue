@@ -39,7 +39,7 @@ public class SysUserController {
     }
 
     @GetMapping("has-phone")
-    @ApiOperation(value = "用户名是否存在", httpMethod = "GET")
+    @ApiOperation(value = "手机号是否存在", httpMethod = "GET")
     public Result<Boolean> hasPhone(@RequestBody String phone) {
         return Result.success(sysUserService.phoneExist(phone));
     }

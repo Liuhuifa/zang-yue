@@ -2,7 +2,7 @@ package com.zy.system.zangyuesystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zy.system.zangyuesystem.entity.SysUser;
-import com.zy.system.zangyuesystem.mapper.SysUserDao;
+import com.zy.system.zangyuesystem.dao.SysUserDao;
 import com.zy.system.zangyuesystem.service.inter.SysUserService;
 import org.springframework.stereotype.Service;
 

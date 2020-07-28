@@ -8,13 +8,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * sys_user
+ *
  * @author lhf
  */
 @Data
-public class SysUserDetails implements Serializable, UserDetails {
+public class SysUserDetails implements UserDetails, Serializable {
+    private static final long serialVersionUID = 1L;
+
     /**
      * 主键
      */
@@ -45,7 +49,15 @@ public class SysUserDetails implements Serializable, UserDetails {
      */
     private String headImg;
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 是否锁定
+     */
+    private Integer isLock;
+
+    /**
+     * 用户的所有角色
+     */
+    private List<SysRoleDTO> roles;
 
 
     @Override
@@ -61,7 +73,7 @@ public class SysUserDetails implements Serializable, UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return this.isLock == 0;
     }
 
     @Override

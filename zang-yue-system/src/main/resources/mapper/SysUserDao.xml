@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="SysUserDao">
+<mapper namespace="com.zy.system.zangyuesystem.dao.SysUserDao">
     <resultMap id="BaseResultMap" type="SysUser">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
@@ -12,8 +12,24 @@
     <sql id="Base_Column_List">
         id, username, phone, `password`, real_name, head_img
     </sql>
-    <select id="login" parameterType="map" resultType="com.zy.system.zangyuesystem.dto.SysUserDetails">
-        select su.id, username, phone, password, real_name, head_img from sys_user su
+    <resultMap id="login-map" type="com.zy.system.zangyuesystem.dto.SysUserDetails" autoMapping="true">
+        <id column="uid" property="id"/>
+        <collection property="roles" ofType="com.zy.system.zangyuesystem.dto.SysRoleDTO" autoMapping="true">
+            <id column="rid" property="id"/>
+            <collection property="menus" ofType="com.zy.system.zangyuesystem.dto.SysMenuDTO" autoMapping="true">
+                <id column="mid" property="id"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="login" parameterType="map" resultMap="login-map">
+        select su.id as uid, username, phone, password, real_name, head_img,su.is_lock,
+               sr.id as rid, role_name,role_ico, role,
+               sm.id as mid, per_name, menu_name, menu_ico, menu_type, parent_id
+        from sys_user su
+        inner join sys_user_role sur on su.id = sur.uid
+        inner join sys_role sr on sur.rid = sr.id
+        inner join sys_role_menu srm on sr.id = srm.rid
+        inner join sys_menu sm on srm.mid = sm.id
         <where>
             <if test="username != null and username != ''">
                 and username = #{username}

@@ -1,4 +1,4 @@
-package com.zy.system.zangyuesystem.mapper;
+package com.zy.system.zangyuesystem.dao;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

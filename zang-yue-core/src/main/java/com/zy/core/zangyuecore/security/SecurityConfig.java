@@ -2,8 +2,11 @@ package com.zy.core.zangyuecore.security;
 
 import com.zy.core.zangyuecore.security.handler.FailureHandler;
 import com.zy.core.zangyuecore.security.handler.SuccessHandler;
+import com.zy.core.zangyuecore.security.phone.PhoneFilter;
+import com.zy.core.zangyuecore.security.phone.PhoneProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -11,6 +14,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.InMemoryOAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
 
@@ -25,8 +34,10 @@ import javax.annotation.Resource;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Resource()
+    @Resource(name = "userDetailsService")
     private UserDetailsService userDetailsService;
+    @Resource
+    private PhoneProvider phoneProvider;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -38,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //TODO 用户配置
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.authenticationProvider(phoneProvider);
     }
 
     @Override
@@ -50,7 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/v2/api-docs",
                 "/configuration/ui",
                 "/configuration/security");
-        ;
     }
 
     @Override
@@ -65,6 +76,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(new FailureHandler())
                 .and()
                 .csrf().disable()
-                .cors().disable();
+                .cors();
+
+        http.addFilterAfter(phoneFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
+    @Bean
+    public PhoneFilter phoneFilter() throws Exception {
+        PhoneFilter phoneFilter = new PhoneFilter();
+        phoneFilter.setAuthenticationSuccessHandler(new SuccessHandler());
+        phoneFilter.setAuthenticationFailureHandler(new FailureHandler());
+        phoneFilter.setAuthenticationManager(super.authenticationManagerBean());
+        return phoneFilter;
+    }
+
 }

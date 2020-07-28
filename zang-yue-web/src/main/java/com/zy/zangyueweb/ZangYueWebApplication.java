@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author lhf
  */
 @SpringBootApplication(scanBasePackages = {"com.zy.**"})
-@MapperScan("com.zy.system.zangyuesystem.mapper")
+@MapperScan("com.zy.system.zangyuesystem.dao")
 public class ZangYueWebApplication {
 
     public static void main(String[] args) {

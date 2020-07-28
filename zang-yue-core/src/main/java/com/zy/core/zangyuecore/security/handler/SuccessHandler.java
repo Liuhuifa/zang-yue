@@ -29,7 +29,7 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
         httpServletResponse.setCharacterEncoding("utf8");
         //TODO 登陆成功时候的返回
         //生成token
-        String token = JwtUtil.generate((UserDetails) authentication.getDetails());
+        String token = JwtUtil.generate((UserDetails) authentication.getPrincipal());
         PrintWriter writer = httpServletResponse.getWriter();
         String json = JSONUtil.toJsonStr(Result.success(Status.LOGIN_SUCCESS, token));
         writer.write(json);
