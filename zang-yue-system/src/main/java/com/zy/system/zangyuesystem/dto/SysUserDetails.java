@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * sys_user
@@ -62,14 +63,14 @@ public class SysUserDetails implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        //TODO 权限注入
-        return Arrays.<GrantedAuthority>asList(new SimpleGrantedAuthority("ROOT"), new SimpleGrantedAuthority("ADMIN"));
+        return roles.stream().flatMap(item -> item.getMenus().stream().map(menu -> new SimpleGrantedAuthority(menu.getPerName()))).collect(Collectors.toList());
     }
 
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
+
 
     @Override
     public boolean isAccountNonLocked() {

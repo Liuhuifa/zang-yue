@@ -3,6 +3,7 @@ package com.zy.zangyueweb.controller;
 
 import com.zy.system.zangyuesystem.entity.SysMenu;
 import com.zy.system.zangyuesystem.service.SysMenuService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("sysMenu")
+@Api(tags = "菜单/权限控制层")
 public class SysMenuController {
     /**
      * 服务对象
@@ -29,7 +31,7 @@ public class SysMenuController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public SysMenu selectOne(Integer id) {
+    public SysMenu selectOne(@RequestBody Integer id) {
         return this.sysMenuService.queryById(id);
     }
 

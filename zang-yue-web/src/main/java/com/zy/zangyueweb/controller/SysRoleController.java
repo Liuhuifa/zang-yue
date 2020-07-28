@@ -2,7 +2,9 @@ package com.zy.zangyueweb.controller;
 
 import com.zy.system.zangyuesystem.entity.SysRole;
 import com.zy.system.zangyuesystem.service.SysRoleService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +18,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("sysRole")
+@Api(tags = "角色管理层")
 public class SysRoleController {
     /**
      * 服务对象
@@ -30,7 +33,7 @@ public class SysRoleController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public SysRole selectOne(Integer id) {
+    public SysRole selectOne(@RequestBody Integer id) {
         return this.sysRoleService.queryById(id);
     }
 
