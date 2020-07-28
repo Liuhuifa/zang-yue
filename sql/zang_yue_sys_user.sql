@@ -1,0 +1,1 @@
+insert into zang-yue.sys_user (id, username, phone, real_name, password, head_img, is_lock) values (1, 'liuhf', 13091326585, '刘会发', '$2a$10$W8w5KE8RhxhuleJvhqdTReMv/fkMYSYCf7BP3PZmQWLJUteTM2u4K', null, 0);
