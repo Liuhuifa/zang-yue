@@ -1,11 +1,12 @@
 package com.zy.zangyueweb.controller;
 
+import com.zy.common.zangyuecommon.exception.PhoneExistException;
+import com.zy.common.zangyuecommon.exception.UsernameExistException;
 import com.zy.common.zangyuecommon.result.Result;
-import com.zy.system.zangyuesystem.entity.SysUser;
+import com.zy.system.zangyuesystem.dto.SysUserDTO;
 import com.zy.system.zangyuesystem.service.inter.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,13 +23,10 @@ import javax.annotation.Resource;
 public class SysUserController {
     @Resource
     private SysUserService sysUserService;
-    @Resource
-    private PasswordEncoder passwordEncoder;
 
     @PostMapping("add")
     @ApiOperation(value = "添加用户", httpMethod = "POST")
-    public Result<Object> insert(@RequestBody SysUser sysUser) {
-        sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
+    public Result<Object> insert(@RequestBody SysUserDTO sysUser) throws UsernameExistException, PhoneExistException {
         return Result.success(sysUserService.insert(sysUser));
     }
 

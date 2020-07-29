@@ -1,32 +1,26 @@
-package com.zy.system.zangyuesystem.entity;
+package com.zy.system.zangyuesystem.dto;
 
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.zy.common.zangyuecommon.annotations.Ignore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import springfox.documentation.annotations.ApiIgnore;
 
-import java.io.Serializable;
+import java.util.List;
 
 /**
- * sys_user
+ * <p></p>
  *
  * @author lhf
+ * @since 2020/7/29 11:32
  */
 @Data
-@ApiModel("用户实体")
-@TableName("sys_user")
-public class SysUser implements Serializable {
+@ApiModel("添加用户的实体")
+public class SysUserDTO {
+
     /**
      * 主键
      */
     @ApiModelProperty("主键")
-    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -59,7 +53,10 @@ public class SysUser implements Serializable {
     @ApiModelProperty("头像地址")
     private String headImg;
 
-    private static final long serialVersionUID = 1L;
-
-
+    /**
+     * 用户的所有角色
+     */
+    @ApiModelProperty("用户的所有角色的id")
+    @Ignore
+    private List<Integer> roles;
 }

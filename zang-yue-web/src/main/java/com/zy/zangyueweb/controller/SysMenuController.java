@@ -1,10 +1,10 @@
 package com.zy.zangyueweb.controller;
 
 
-import com.zy.system.zangyuesystem.entity.SysMenu;
-import com.zy.system.zangyuesystem.service.SysMenuService;
+import com.zy.system.zangyuesystem.service.inter.SysMenuService;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -24,15 +24,6 @@ public class SysMenuController {
     @Resource
     private SysMenuService sysMenuService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public SysMenu selectOne(@RequestBody Integer id) {
-        return this.sysMenuService.queryById(id);
-    }
+
 
 }

@@ -12,6 +12,7 @@ import java.util.Map;
  * @author lhf
  */
 public interface SysUserDao extends BaseMapper<SysUser> {
+
     /**
      * 登录，用过用户名或者手机号查询用户信息
      *

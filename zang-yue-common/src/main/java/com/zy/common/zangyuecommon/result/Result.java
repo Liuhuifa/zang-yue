@@ -1,5 +1,8 @@
 package com.zy.common.zangyuecommon.result;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,9 +14,13 @@ import lombok.Data;
  */
 @Data
 @Builder
+@ApiModel("统一返回实体")
 public class Result<T> {
+    @ApiModelProperty("响应状码")
     private int code;
+    @ApiModelProperty("返回数据")
     private T t;
+    @ApiModelProperty("响应描述")
     private String mes;
 
     public Result(int code, T t, String mes) {

@@ -1,5 +1,8 @@
 package com.zy.system.zangyuesystem.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -8,17 +11,19 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-07-28 16:59:01
  */
+@ApiModel("角色实体")
 public class SysRole implements Serializable {
     private static final long serialVersionUID = 715501864657168451L;
-    
+
+    @ApiModelProperty("主键")
     private Integer id;
-    
+    @ApiModelProperty("角色名字")
     private String roleName;
-    
+    @ApiModelProperty("角色图标")
     private String roleIco;
-    
+    @ApiModelProperty("角色")
     private String role;
-    
+    @ApiModelProperty("是否删除")
     private Integer isDel;
 
 

@@ -1,5 +1,9 @@
 package com.zy.system.zangyuesystem.service.inter;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.zy.common.zangyuecommon.exception.PhoneExistException;
+import com.zy.common.zangyuecommon.exception.UsernameExistException;
+import com.zy.system.zangyuesystem.dto.SysUserDTO;
 import com.zy.system.zangyuesystem.entity.SysUser;
 
 /**
@@ -8,7 +12,7 @@ import com.zy.system.zangyuesystem.entity.SysUser;
  * @author lhf
  * @since 2020/7/18$ 8:38$
  */
-public interface SysUserService {
+public interface SysUserService  {
 
     /**
      * 添加用户
@@ -16,7 +20,7 @@ public interface SysUserService {
      * @param sysUser 用户实体
      * @return int 受影响行数
      */
-    int insert(SysUser sysUser);
+    int insert(SysUserDTO sysUser) throws PhoneExistException, UsernameExistException;
 
     /**
      * 查询用户名是否存在

@@ -12,7 +12,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>zang-yue-common</name>
     <description>公共模块儿</description>
-
+<!--    <packaging>pom</packaging>-->
     <properties>
         <java.version>1.8</java.version>
     </properties>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.system.zangyuesystem.dao.SysUserRoleDao">
+
+    <resultMap id="BaseResultMap" type="com.zy.system.zangyuesystem.entity.SysUserRole">
+        <!--@Table sys_user_role-->
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="rid" column="rid" jdbcType="INTEGER"/>
+    </resultMap>
+    <insert id="insert" parameterType="list">
+        insert into sys_user_role(uid, rid) VALUES
+        <foreach collection="list" open="(" close=")" separator="),(" item="item">
+            #{item.uid},#{item.rid}
+        </foreach>
+    </insert>
+
+</mapper>

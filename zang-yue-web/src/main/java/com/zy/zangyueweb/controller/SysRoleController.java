@@ -1,10 +1,7 @@
 package com.zy.zangyueweb.controller;
 
-import com.zy.system.zangyuesystem.entity.SysRole;
-import com.zy.system.zangyuesystem.service.SysRoleService;
+import com.zy.system.zangyuesystem.service.inter.SysRoleService;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,15 +23,6 @@ public class SysRoleController {
     @Resource
     private SysRoleService sysRoleService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public SysRole selectOne(@RequestBody Integer id) {
-        return this.sysRoleService.queryById(id);
-    }
+
 
 }
