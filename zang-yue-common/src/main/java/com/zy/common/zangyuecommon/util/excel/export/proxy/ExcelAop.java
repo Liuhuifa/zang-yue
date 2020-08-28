@@ -37,12 +37,13 @@ public class ExcelAop {
         Method method = signature.getMethod();
 
         Export annotation = method.getAnnotation(Export.class);
-        Class clazz = annotation.value();
+        Class<?> clazz = annotation.value();
         String fileName = annotation.fileName();
 
         HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
 
-        AbstractExcel excel = new DefaultExcelExport<>();
+        AbstractExcel excel = (AbstractExcel)annotation.template().newInstance();
+
         excel.export(clazz, (List) obj, fileName,null);
     }
 }

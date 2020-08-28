@@ -1,5 +1,6 @@
 package com.zy.common.zangyuecommon.util.excel.annotations;
 
+import com.zy.common.zangyuecommon.util.excel.export.template.DefaultExcelExport;
 import org.apache.poi.ss.formula.functions.T;
 
 import java.lang.annotation.*;
@@ -20,7 +21,9 @@ public @interface Export {
      *
      * @return
      */
-    Class value();
+    Class<?> value();
+
+    Class<?> template() default DefaultExcelExport.class;
 
     /**
      * 文件名
