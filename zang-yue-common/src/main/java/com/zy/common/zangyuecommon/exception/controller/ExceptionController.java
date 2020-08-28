@@ -1,4 +1,4 @@
-package com.zy.common.zangyuecommon.exception;
+package com.zy.common.zangyuecommon.exception.controller;
 
 import com.zy.common.zangyuecommon.result.Result;
 import com.zy.common.zangyuecommon.result.Status;
